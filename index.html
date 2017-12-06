@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <div class="box">
+      <div class="box_top">
+        <p><span class="select">快速登录</span></p>
+        <p><span>快速注册</span></p>
+      </div>
+      <div class="box_body checked">
+        <div class="box_body_top"><span>账号：</span>
+          <input type="text" id="userName1">
+        </div>
+        <div><span>密码：</span>
+          <input type="text" id="passWord1"><br>
+        </div>
+        <button id="btn1">登录</button>
+      </div>
+      <div class="box_body">
+        <div class="box_body_top"><span>账号：</span>
+          <input type="text" id="userName2">
+        </div>
+        <div><span>密码：</span>
+          <input type="text" id="passWord2">
+        </div>
+        <button id="btn2">注册</button>
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript" src="js/aja.js"></script>
+  <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+  <script>
+    $(".box_top p").click(function() {
+    var _this = $(this).index();
+    $(".box_top p span").removeClass("select").eq(_this).addClass("select");
+    $(".box_body").removeClass("checked").eq(_this).addClass("checked");
+    })
+  </script>
+</html>

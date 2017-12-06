@@ -1,0 +1,91 @@
+*{
+	padding: 0;
+	margin: 0;
+	border: 0;
+	text-decoration: none;
+}
+body{
+	background-image: url('../image/1.jpg');
+	background-repeat: no-repeat;
+}
+.box{
+	width: 370px;
+	height: 298px;
+	background-color: #fff;
+	margin: 174px auto 0 auto;
+}
+.box_top{
+	width: 100%;
+	height: 55px;
+	border-bottom: solid 1px #e2e2e2;
+	display: flex;
+}
+.box_top p{
+	width: 50%;
+	height: 55px;
+	text-align: center;
+	cursor: pointer;
+	color: #999999;
+}
+.box_top p span{
+	display: inline-block;
+	line-height: 55px;
+}
+.box_top p span.select{
+	color: #000;
+	border-bottom: solid 2px #848484;
+}
+.box_body{
+	width: 100%;
+	height: 240px;
+	display: none;
+}
+.box_body.checked{
+	display: block;
+}
+input{
+	outline-style: none;
+}
+button{
+	outline-style: none;
+}
+.box_body .box_body_top{
+	padding-top: 40px;
+}
+.box_body div{
+	padding-top: 18px;
+	padding-left: 50px;
+}
+.box_body div input{
+	width: 205px;
+	height: 40px;
+	border: solid 1px #d7d7d7;
+}
+.box_body button{
+	width: 150px;
+	height: 40px;
+	background-color: #2795dc;
+	color: #fff;
+	cursor: pointer;
+	margin-top: 10px;
+	margin-left: 103px;
+	border-radius: 5px;
+}
+#check{
+	width: 15px;
+	height: 15px;
+	position: relative;
+	top: 3px;
+}
+#btn1,#btn2{
+	margin-top: 20px;
+}
+.login_tz{
+	float: right;
+	font-size: 12px;
+	margin: 10px;
+}
+.zc_wbk{
+	width: 1000px;
+	margin: 0 auto;
+}

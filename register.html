@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#img{
+				width: 200px;
+				height: 200px;
+				background: #CCCCCC;
+			}
+			#img img{
+				width: 100%;
+				height: 100%;
+			}
+		</style>
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+	<body>
+		<div class="zc_wbk">
+			<div id="img">
+			
+			</div>
+			 	头像：<input type="file" id="files"/><br>
+				昵称：<input type="text" id="names"/><br>
+				性别：<input type="text" id="sex"/><br>
+				地址：<input type="text" id="ip"/><br>
+				电话：<input type="text" id="tel"/><br>
+				邮箱：<input type="text" id="email"/><br>
+				q q：<input type="text" id="qq"/><br>
+				<button id="btn3">保存</button>
+		</div>
+		
+	</body>
+	<script>
+	var imgurl = ''
+    files.onchange = function(){
+    	var img = this.files[0]
+	    var images = new FormData()
+	    images.append('img',img)
+	    console.log(images)
+	    ajax({
+	 	url:'http://localhost:8000/user/img',
+	 	type:'post',
+	 	data:images,
+	 	success:function(da){
+	 		console.log(da)
+	 		var img = document.getElementById('img')
+	 		imgurl= da
+	 		img.innerHTML = '<img src="'+da+'">'
+	 	},
+	 	error:function(){
+	 		
+	 	}
+	 })
+    } 
+     btn3.onclick = function(){
+     	ajax1({
+	 	url:'http://localhost:8000/user/lee',
+	 	type:'post',
+	 	data:{
+	 		imgurls:imgurl,
+	 		name:names.value,
+	 		sex:sex.value,
+	 		ip:ip.value,
+	 		email:email.value,
+	 		qq:qq.value,
+	 		tel:tel.value
+	 	},
+	 	success:function(da){
+	 		console.log(da)
+	 	},
+	 	error:function(){
+	 		
+	 	}
+	 })
+     }
+	 
+function ajax(req){
+//	console.log(req.data)
+	if(window.XMLHttpRequest){
+				var ajax = new XMLHttpRequest()
+	}else{
+				var ajax = new ActiveXObject( "Microsoft.XMLHTTP" );
+		}
+	if(req.type == 'get'){
+		ajax.open('get',req.url+'?'+strdata(req.data),true)
+		ajax.send()
+	}else{
+		ajax.open('post',req.url,true)
+		ajax.send(req.data)
+	}
+		ajax.onreadystatechange = function(){
+			if(ajax.readyState == 4){
+				if(ajax.status>=200 && ajax.status<300 || ajax.status == 304){
+					req.success(ajax.responseText)
+//					console.log(ajax.responseText)
+				}else{
+					req.error(ajax.status)
+				}
+				
+			}
+		}
+
+}
+
+
+function ajax1(req){
+//	console.log(req.data)
+	if(window.XMLHttpRequest){
+				var ajax = new XMLHttpRequest()
+	}else{
+				var ajax = new ActiveXObject( "Microsoft.XMLHTTP" );
+		}
+	if(req.type == 'get'){
+		ajax.open('get',req.url+'?'+strdata(req.data),true)
+		ajax.send()
+	}else{
+		ajax.open('post',req.url,true)
+		ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded")
+		ajax.send(strdata(req.data))
+	}
+		ajax.onreadystatechange = function(){
+			if(ajax.readyState == 4){
+				if(ajax.status>=200 && ajax.status<300 || ajax.status == 304){
+					req.success(ajax.responseText)
+//					console.log(ajax.responseText)
+				}else{
+					req.error(ajax.status)
+				}
+				
+			}
+		}
+
+    function strdata(da){
+    	  var arr = []
+	   for(var i in da){
+		arr.push(i+'='+da[i])
+	  }
+	   var strurl = arr.join('&')
+	   return strurl
+    }
+}
+	</script>
+</html>
