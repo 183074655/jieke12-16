@@ -15,26 +15,33 @@ btn1.onclick = function() {
 	})
 }
 btn2.onclick = function() {
-	ajax({
-		url: 'http://localhost:8000/user/login2',
-		type: 'post',
-		data: {
-			user: userName2.value,
-			pass: passWord2.value
-		},
-		success: function(da) {
-			if(da=='用户名以存在'){
-				alert('用户名以存在')
-			}else{
-				window.open(da)
-			}
-			
+	if(userName2.value == '') {
+		alert('请输入用户名')
+	} else {
+		if(passWord2.value == '') {
+			alert('请输入密码')
+		} else {
+			ajax({
+				url: 'http://localhost:8000/user/login2',
+				type: 'post',
+				data: {
+					user: userName2.value,
+					pass: passWord2.value
+				},
+				success: function(da) {
+					if(da == '用户名以存在') {
+						alert('用户名已存在')
+					} else {
+						window.open(da, "_self")
+					}
+				},
+				error: function() {
 
-		},
-		error: function() {
-
+				}
+			})
 		}
-	})
+	}
+
 }
 
 function ajax(req) {
